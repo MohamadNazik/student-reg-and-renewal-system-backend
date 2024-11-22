@@ -5,6 +5,11 @@ const studentListSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  NIC: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   RegNo: {
     type: String,
     required: true,

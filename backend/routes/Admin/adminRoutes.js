@@ -1,6 +1,7 @@
 import express from "express";
-import { uploadStudentDetails } from "../../controllers/Admin/getStudentList.js";
+import { uploadStudentDetails } from "../../controllers/Admin/uploadStudentList.js";
 import { fileUploadMiddleware } from "../../middlewares/fileUploadMiddleware.js";
+import { getStudentList } from "../../controllers/Admin/getStudentList.js";
 
 const router = express.Router();
 
@@ -9,5 +10,6 @@ router.post(
   fileUploadMiddleware,
   uploadStudentDetails
 );
+router.get("/get-student-details", getStudentList);
 
 export default router;
