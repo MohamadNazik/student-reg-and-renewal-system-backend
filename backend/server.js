@@ -2,8 +2,12 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
-import ConnectDB from "./config/database";
+import ConnectDB from "./config/database.js";
+import adminRoutes from "./routes/Admin/adminRoutes.js";
 
+const app = express();
+app.use(express.json());
+app.use(morgan("dev"));
 dotenv.config();
 ConnectDB();
 
@@ -13,13 +17,10 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-
-const app = express();
-app.use(express.json());
-app.use(morgan("dev"));
+app.use("/api/admin/", adminRoutes);
 
 const PORT = process.env.PORT || 8080;
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
