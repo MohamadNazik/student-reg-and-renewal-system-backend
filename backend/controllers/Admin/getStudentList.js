@@ -1,4 +1,4 @@
-import studentListModel from "../models/studentListModel.js";
+import studentListModel from "../../models/studentListModel.js";
 import xlsx from "xlsx";
 
 export const uploadStudentDetails = async (req, res) => {

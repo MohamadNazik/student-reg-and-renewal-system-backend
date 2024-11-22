@@ -1,5 +1,5 @@
 import express from "express";
-import { uploadStudentDetails } from "./../../controllers/getStudentList.js";
+import { uploadStudentDetails } from "../../controllers/Admin/getStudentList.js";
 import { fileUploadMiddleware } from "../../middlewares/fileUploadMiddleware.js";
 
 const router = express.Router();
