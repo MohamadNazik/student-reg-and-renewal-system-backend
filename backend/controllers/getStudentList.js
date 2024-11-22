@@ -4,6 +4,12 @@ import xlsx from "xlsx";
 export const uploadStudentDetails = async (req, res) => {
   try {
     const fileBuffer = req.file.buffer;
+    if (!req.file.buffer) {
+      return res.status(400).send({
+        success: false,
+        message: "No file uploaded",
+      });
+    }
 
     const workbook = xlsx.read(fileBuffer, { type: "buffer" });
     const sheetName = workbook.SheetNames[0];
@@ -16,10 +22,16 @@ export const uploadStudentDetails = async (req, res) => {
 
     const result = await studentListModel.insertMany(students);
 
-    res
-      .status(200)
-      .send({ message: "Data uploaded successfully", data: result });
+    res.status(200).send({
+      success: true,
+      message: "Data uploaded successfully",
+      data: result,
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).send({
+      success: false,
+      message: "Error",
+      error: error,
+    });
   }
 };
