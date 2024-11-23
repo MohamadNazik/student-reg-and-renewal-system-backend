@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import pytesseract
-from PIL import Image
 import os
+from pdf2image import convert_from_path
+import pytesseract
 
 app = Flask(__name__)
 CORS(app)
@@ -12,24 +12,29 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route('/extract-text', methods=['POST'])
 def extract_text():
-    if 'image' not in request.files:
-        return jsonify({"error": "No image file provided"}), 400
+    if 'pdf' not in request.files:
+        return jsonify({"error": "No PDF file provided"}), 400
 
-    image_file = request.files['image']
-
+    pdf_file = request.files['pdf']
     try:
-        image_path = os.path.join(UPLOAD_FOLDER, image_file.filename)
-        image_file.save(image_path)
+        pdf_path = os.path.join(UPLOAD_FOLDER, pdf_file.filename)
+        pdf_file.save(pdf_path)
 
-        # Extract text using Tesseract
-        extracted_text = pytesseract.image_to_string(Image.open(image_path))
+        # Convert PDF to images
+        images = convert_from_path(pdf_path)
+        extracted_texts = []
 
-        # Clean up image file
-        os.remove(image_path)
+        for i, image in enumerate(images):
+            # Extract text using Tesseract
+            text = pytesseract.image_to_string(image)
+            extracted_texts.append({"page": i + 1, "text": text})
 
-        return jsonify({"text": extracted_text}), 200
+        # Clean up PDF file
+        os.remove(pdf_path)
+
+        return jsonify({"texts": extracted_texts}), 200
     except Exception as e:
-        return jsonify({"error": f"Failed to process image. {str(e)}"}), 500
+        return jsonify({"error": f"Failed to process PDF. {str(e)}"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
