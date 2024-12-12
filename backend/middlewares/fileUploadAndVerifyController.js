@@ -3,7 +3,7 @@ import path from "path";
 import axios from "axios";
 import FormData from "form-data";
 
-export const fileUploadAndVerifyController = async (req, res) => {
+export const fileUploadAndVerifyController = async (req, res, next) => {
   const pdfFile = req.file;
 
   if (!pdfFile) {
@@ -28,11 +28,8 @@ export const fileUploadAndVerifyController = async (req, res) => {
 
     await fs.remove(pdfPath);
 
-    res.status(200).send({
-      success: true,
-      message: "Successfully extracted",
-      data: response.data,
-    });
+    req.extractedText = response.data.texts[0].text;
+    next();
   } catch (error) {
     console.error("Error processing PDF:", error.message);
     res
