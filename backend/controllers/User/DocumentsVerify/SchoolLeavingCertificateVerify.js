@@ -12,7 +12,7 @@ export const SchoolLeavingCertificateVerify = async (req, res) => {
       console.log(lowerCaseExtractedText);
   
       // Define predefined texts in lowercase
-      const predefinedTexts = ["school name" , "admission number" , "principal signature"];
+      const predefinedTexts = ["school name" ,"school leaving certificate" , "principal signature"];
   
       // Check for matches
       const matches = predefinedTexts.filter((text) =>
