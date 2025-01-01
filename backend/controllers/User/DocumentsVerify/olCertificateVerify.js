@@ -7,20 +7,20 @@ export const olCertificateVerify = async (req, res) => {
         .status(400)
         .send({ success: false, message: "No text provided for analysis" });
     }
-
-    // Convert extracted text to lowercase
     const lowerCaseExtractedText = extractedText.toLowerCase();
     console.log(lowerCaseExtractedText);
 
-    // Define predefined texts in lowercase
-    const predefinedTexts = ["g.c.e.(o/l)", "o/l", "ordinary level", Index_OL];
+    const predefinedTexts = ["g.c.e.(o/l)", "o/l", "ordinary level"];
 
-    // Check for matches
     const matches = predefinedTexts.filter((text) =>
       lowerCaseExtractedText.includes(text)
     );
 
-    matches.length > 0
+    const index = Index_OL.filter((text) =>
+      lowerCaseExtractedText.includes(text)
+    );
+
+    matches.length > 0 && index
       ? res.status(200).send({
           success: true,
           message: "Verified OL Certificate",
