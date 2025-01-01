@@ -3,6 +3,8 @@ import { verifyStudentController } from "../../controllers/User/verifyStudentCon
 import multer from "multer";
 import { fileUploadAndVerifyController } from "../../middlewares/fileUploadAndVerifyController.js";
 import { olCertificateVerify } from "../../controllers/User/DocumentsVerify/olCertificateVerify.js";
+import { documentUploadMiddleware } from "../../middlewares/fileUploadMiddleware.js";
+import { addStudentController } from "../../controllers/User/addStudentController.js";
 
 const router = express.Router();
 
@@ -15,5 +17,7 @@ router.post(
   fileUploadAndVerifyController,
   olCertificateVerify
 );
+
+router.post("/add-student", documentUploadMiddleware, addStudentController);
 
 export default router;
