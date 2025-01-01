@@ -1,4 +1,4 @@
-export const BirthcertificateVerify = async (req, res) => {
+export const SchoolLeavingCertificateVerify = async (req, res) => {
     try {
       const { extractedText } = req;
       if (!extractedText) {
@@ -12,7 +12,7 @@ export const BirthcertificateVerify = async (req, res) => {
       console.log(lowerCaseExtractedText);
   
       // Define predefined texts in lowercase
-      const predefinedTexts = ["national birth certificate", "date of birth" , "place of birth"];
+      const predefinedTexts = ["school name" , "admission number" , "principal signature"];
   
       // Check for matches
       const matches = predefinedTexts.filter((text) =>
@@ -22,7 +22,7 @@ export const BirthcertificateVerify = async (req, res) => {
       matches.length > 0
         ? res.status(200).send({
             success: true,
-            message: "Verified birth Certificate",
+            message: "Verified School leaving Certificate",
             matches,
           })
         : res.status(200).send({
