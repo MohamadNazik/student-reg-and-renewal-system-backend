@@ -30,6 +30,7 @@ const userSchema = new mongoose.Schema({
   Educational_Qualifications: {
     AL_year: { type: Number, required: true },
     Index_AL: { type: Number, required: true, unique: true },
+    Index_OL: { type: Number, required: true, unique: true },
     Zscore: { type: Number, required: true, unique: true },
     AL_result: {
       Subject1: {
@@ -141,4 +142,4 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("users", userSchema);
+export default mongoose.model("users", userSchema);
