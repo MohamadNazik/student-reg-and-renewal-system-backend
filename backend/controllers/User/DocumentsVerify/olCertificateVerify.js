@@ -1,6 +1,7 @@
 export const olCertificateVerify = async (req, res) => {
   try {
     const { extractedText } = req;
+    const { Index_OL } = req.body;
     if (!extractedText) {
       return res
         .status(400)
@@ -12,7 +13,7 @@ export const olCertificateVerify = async (req, res) => {
     console.log(lowerCaseExtractedText);
 
     // Define predefined texts in lowercase
-    const predefinedTexts = ["g.c.e.(o/l)", "o/l", "ordinary level"];
+    const predefinedTexts = ["g.c.e.(o/l)", "o/l", "ordinary level", Index_OL];
 
     // Check for matches
     const matches = predefinedTexts.filter((text) =>
