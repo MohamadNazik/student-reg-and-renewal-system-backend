@@ -1,4 +1,4 @@
-export const A5FormVerify = async (req, res) => {
+export const AttestationVerify = async (req, res) => {
     try {
       const { extractedText } = req;
       if (!extractedText) {
@@ -9,10 +9,10 @@ export const A5FormVerify = async (req, res) => {
   
       // Convert extracted text to lowercase
       const lowerCaseExtractedText = extractedText.toLowerCase();
-      console.log(lowerCaseExtractedText);
+      //console.log(lowerCaseExtractedText);
   
       // Define predefined texts in lowercase
-      const predefinedTexts = ["games and athletics","recording experiences in games and athletics","school level / club level sports experience"];
+      const predefinedTexts = ["attestation","signature of the attestation"];
   
       // Check for matches
       const matches = predefinedTexts.filter((text) =>
@@ -22,7 +22,7 @@ export const A5FormVerify = async (req, res) => {
       matches.length > 0
         ? res.status(200).send({
             success: true,
-            message: "A5 form Verification Successful!",
+            message: "Attestation Verification Successful!",
             matches,
           })
         : res.status(200).send({
