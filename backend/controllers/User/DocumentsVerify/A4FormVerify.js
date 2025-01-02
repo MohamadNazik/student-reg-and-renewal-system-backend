@@ -1,4 +1,4 @@
-export const StudentDeclarationFormVerify = async (req, res) => {
+export const A4FormVerify = async (req, res) => {
     try {
       const { extractedText } = req;
       if (!extractedText) {
