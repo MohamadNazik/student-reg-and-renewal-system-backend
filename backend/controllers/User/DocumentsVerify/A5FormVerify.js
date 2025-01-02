@@ -12,7 +12,7 @@ export const A5FormVerify = async (req, res) => {
       console.log(lowerCaseExtractedText);
   
       // Define predefined texts in lowercase
-      const predefinedTexts = ["games and athletics","recording experiences in games and athletics","school level /club level sports experience"];
+      const predefinedTexts = ["games and athletics","recording experiences in games and athletics","school level / club level sports experience"];
   
       // Check for matches
       const matches = predefinedTexts.filter((text) =>
