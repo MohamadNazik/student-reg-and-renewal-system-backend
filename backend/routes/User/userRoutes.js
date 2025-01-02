@@ -15,6 +15,7 @@ import { A4FormVerify } from "../../controllers/User/DocumentsVerify/A4FormVerif
 import { A5FormVerify } from "../../controllers/User/DocumentsVerify/A5FormVerify.js";
 import { A6FormVerify } from "../../controllers/User/DocumentsVerify/A6FormVerify.js";
 import { AttestationVerify } from "../../controllers/User/DocumentsVerify/AttestationVerify.js";
+import { PaymentVerify } from "../../controllers/User/DocumentsVerify/PaymentVerify.js";
 
 const router = express.Router();
 
@@ -62,6 +63,12 @@ router.post(
   upload.single("pdf"),
   fileUploadAndVerifyController,
   AttestationVerify
+);
+router.post(
+  "/verify-payment",
+  upload.single("pdf"),
+  fileUploadAndVerifyController,
+  PaymentVerify
 );
 router.post(
   "/verify-a3form",
