@@ -12,7 +12,7 @@ export const StudentDeclarationFormVerify = async (req, res) => {
       console.log(lowerCaseExtractedText);
   
       // Define predefined texts in lowercase
-      const predefinedTexts = ["student declaration form"];
+      const predefinedTexts = ["declaration by the internal student admitted to the university of Vavuniya"];
   
       // Check for matches
       const matches = predefinedTexts.filter((text) =>
