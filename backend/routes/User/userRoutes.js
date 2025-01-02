@@ -7,6 +7,7 @@ import { documentUploadMiddleware } from "../../middlewares/fileUploadMiddleware
 import { addStudentController } from "../../controllers/User/addStudentController.js";
 import { AlCertificateVerify } from "../../controllers/User/DocumentsVerify/AlCertificateVerify.js";
 import { BirthcertificateVerify } from "../../controllers/User/DocumentsVerify/BirthcertificateVerify.js";
+import { MedicalCertificateVerify } from "../../controllers/User/DocumentsVerify/MedicalCertificateVerify.js";
 
 const router = express.Router();
 
@@ -30,6 +31,12 @@ router.post(
   upload.single("pdf"),
   fileUploadAndVerifyController,
   BirthcertificateVerify
+);
+router.post(
+  "/verify-mc",
+  upload.single("pdf"),
+  fileUploadAndVerifyController,
+  MedicalCertificateVerify
 );
 router.post("/add-student", documentUploadMiddleware, addStudentController);
 
