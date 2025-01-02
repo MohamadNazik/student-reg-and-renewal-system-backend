@@ -9,7 +9,7 @@ export const A3FormVerify = async (req, res) => {
   
       // Convert extracted text to lowercase
       const lowerCaseExtractedText = extractedText.toLowerCase();
-      console.log(lowerCaseExtractedText);
+      //console.log(lowerCaseExtractedText);
   
       // Define predefined texts in lowercase
       const predefinedTexts = ["student information sheet"];
