@@ -1,4 +1,4 @@
-export const HostelAccommodationFormVerify = async (req, res) => {
+export const A6FormVerify = async (req, res) => {
     try {
       const { extractedText } = req;
       if (!extractedText) {
@@ -12,7 +12,7 @@ export const HostelAccommodationFormVerify = async (req, res) => {
       console.log(lowerCaseExtractedText);
   
       // Define predefined texts in lowercase
-      const predefinedTexts = ["hostel accommodation approval", "warden approval signature"];
+      const predefinedTexts = ["hostel accommodation approval form", "warden approval signature"];
   
       // Check for matches
       const matches = predefinedTexts.filter((text) =>
