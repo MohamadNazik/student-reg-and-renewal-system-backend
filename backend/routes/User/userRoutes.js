@@ -14,6 +14,7 @@ import { A3FormVerify } from "../../controllers/User/DocumentsVerify/A3FormVerif
 import { A4FormVerify } from "../../controllers/User/DocumentsVerify/A4FormVerify.js";
 import { A5FormVerify } from "../../controllers/User/DocumentsVerify/A5FormVerify.js";
 import { A6FormVerify } from "../../controllers/User/DocumentsVerify/A6FormVerify.js";
+import { AttestationVerify } from "../../controllers/User/DocumentsVerify/AttestationVerify.js";
 
 const router = express.Router();
 
@@ -55,6 +56,12 @@ router.post(
   upload.single("pdf"),
   fileUploadAndVerifyController,
   SchoolLeavingCertificateVerify
+);
+router.post(
+  "/verify-attestation",
+  upload.single("pdf"),
+  fileUploadAndVerifyController,
+  AttestationVerify
 );
 router.post(
   "/verify-a3form",
