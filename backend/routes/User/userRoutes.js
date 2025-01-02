@@ -5,6 +5,7 @@ import { fileUploadAndVerifyController } from "../../middlewares/fileUploadAndVe
 import { olCertificateVerify } from "../../controllers/User/DocumentsVerify/olCertificateVerify.js";
 import { documentUploadMiddleware } from "../../middlewares/fileUploadMiddleware.js";
 import { addStudentController } from "../../controllers/User/addStudentController.js";
+import { AlCertificateVerify } from "../../controllers/User/DocumentsVerify/AlCertificateVerify.js";
 
 const router = express.Router();
 
@@ -17,7 +18,12 @@ router.post(
   fileUploadAndVerifyController,
   olCertificateVerify
 );
-
+router.post(
+  "/verify-al",
+  upload.single("pdf"),
+  fileUploadAndVerifyController,
+  AlCertificateVerify
+);
 router.post("/add-student", documentUploadMiddleware, addStudentController);
 
 export default router;
