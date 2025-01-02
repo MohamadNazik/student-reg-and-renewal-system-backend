@@ -8,6 +8,7 @@ import { addStudentController } from "../../controllers/User/addStudentControlle
 import { AlCertificateVerify } from "../../controllers/User/DocumentsVerify/AlCertificateVerify.js";
 import { BirthcertificateVerify } from "../../controllers/User/DocumentsVerify/BirthcertificateVerify.js";
 import { MedicalCertificateVerify } from "../../controllers/User/DocumentsVerify/MedicalCertificateVerify.js";
+import { Nicverify } from "../../controllers/User/DocumentsVerify/Nicverify.js";
 
 const router = express.Router();
 
@@ -38,6 +39,13 @@ router.post(
   fileUploadAndVerifyController,
   MedicalCertificateVerify
 );
+router.post(
+  "/verify-nic",
+  upload.single("pdf"),
+  fileUploadAndVerifyController,
+  Nicverify
+);
+
 router.post("/add-student", documentUploadMiddleware, addStudentController);
 
 export default router;
